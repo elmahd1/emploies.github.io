@@ -7,11 +7,20 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            margin-top: 20px;
         }
         table {
             width: 100%;
+            max-width: 600px;
             border-collapse: collapse;
-            margin-bottom: 20px;
         }
         th, td {
             border: 1px solid #ddd;
@@ -31,64 +40,58 @@
         button:hover {
             background-color: #ddd;
         }
-        .footer {
+        footer {
             position: fixed;
             bottom: 0;
             width: 100%;
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            background-color: #f1f1f1;
+            padding: 10px;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
         }
-        .footer .pocket {
+        .pocket {
             position: relative;
             display: inline-block;
         }
-        .footer .pocket-content {
+        .pocket-content {
             display: none;
             position: absolute;
-            bottom: 40px;
+            bottom: 100%;
             background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 10px;
             z-index: 1;
         }
-        .footer .pocket-content button {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
+        .pocket:hover .pocket-content {
             display: block;
-            text-align: left;
-            width: 100%;
         }
-        .footer .pocket-content button:hover {
-            background-color: #ddd;
-        }
-        .footer .pocket:hover .pocket-content {
-            display: block;
+        .lunch{
+            width: 20px;
+            background-color: dimgray;
+            height: 100%;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <table class="emploie" id="emploie1">
+        <table>
             <tr><th>Jour</th><th>8:00</th><th>9:00</th><th>10:00</th><th>11:00</th><th>12:00</th><th>13:00</th></tr>
-            <tr><td>lundi</td><td><button id="12"></button></td><td><button id="13"></button></td><td><button id="14"></button></td><td><button id="15"></button></td><td><button id="16"></button></td><td><button id="17"></button></td></tr>
-            <tr><td>mardi</td><td><button id="22"></button></td><td><button id="23"></button></td><td><button id="24"></button></td><td><button id="25"></button></td><td><button id="26"></button></td><td><button id="27"></button></td></tr>
-            <tr><td>mercredi</td><td><button id="32"></button></td><td><button id="33"></button></td><td><button id="34"></button></td><td><button id="35"></button></td><td><button id="36"></button></td><td><button id="37"></button></td></tr>
-            <tr><td>jeudi</td><td><button id="42"></button></td><td><button id="43"></button></td><td><button id="44"></button></td><td><button id="45"></button></td><td><button id="46"></button></td><td><button id="47"></button></td></tr>
-            <tr><td>vendredi</td><td><button id="52"></button></td><td><button id="53"></button></td><td><button id="54"></button></td><td><button id="55"></button></td><td><button id="56"></button></td><td><button id="57"></button></td></tr>
+            <tr><td>lundi</td><td><button id="12"></button></td><td><button id="13"></button></td><td><button id="14"></button></td><td class="lunch"></td><td><button id="15"></button></td><td><button id="16"></button></td><td><button id="17"></button></td></tr>
+            <tr><td>mardi</td><td><button id="22"></button></td><td><button id="23"></button></td><td><button id="24"></button></td><td class="lunch"></td><td><button id="25"></button></td><td><button id="26"></button></td><td><button id="27"></button></td></tr>
+            <tr><td>mercredi</td><td><button id="32"></button></td><td><button id="33"></button></td><td><button id="34"></button></td><td class="lunch"></td><td><button id="35"></button></td><td><button id="36"></button></td><td><button id="37"></button></td></tr>
+            <tr><td>jeudi</td><td><button id="42"></button></td><td><button id="43"></button></td><td><button id="44"></button></td><td class="lunch"></td><td><button id="45"></button></td><td><button id="46"></button></td><td><button id="47"></button></td></tr>
+            <tr><td>vendredi</td><td><button id="52"></button></td><td><button id="53"></button></td><td><button id="54"></button></td><td class="lunch"></td><td><button id="55"></button></td><td><button id="56"></button></td><td><button id="57"></button></td></tr>
         </table>
     </div>
-    <div class="footer">
+    <footer>
         <div class="pocket">
-            <span>Options</span>
+            <button id="b11" value="nice">nice</button>
             <div class="pocket-content">
-                <button id="b11" value="nice">nice</button>
-                <button id="b12" value="niceX2">nicex2</button>
+                <button id="b12" value="niceX2">niceX2</button>
             </div>
         </div>
-    </div>
+    </footer>
     <script>
         let b1 = document.getElementById("b11");
         b1.addEventListener('click', function() {
