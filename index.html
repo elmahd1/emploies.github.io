@@ -99,26 +99,7 @@
                
             </div>
         </div>
-        <div class="pocket blue">
-            <button id="b21" value="arabe">ARABE</button>
-            <div class="pocket-content">
-                <button id="b22" value="T.MRJANE" draggable="true" ondragstart="drag(event)">T.MRJANE</button>
-               
-            </div>
-        </div>
-        <div class="pocket green">
-            <button id="b31" value="ENGLAIS">ENGLAIS</button>
-            <div class="pocket-content">
-                <button id="b32" value="flana">flana</button>
-              
-            </div>
-        </div>
-        <div class="pocket green"></div>
-            <button id="b31" value="SVT">SVT</button>
-            <div class="pocket-content">
-                <button id="b32" value="SVT">SVT</button>
-            </div>
-        </div>
+       
     </footer>
     <script>
        function drag(event) {
@@ -147,6 +128,7 @@
                     newButton.innerText = this.innerText;
                     newButton.value = this.innerText;
                     newButton.draggable = true;
+                    newButton.style.width='100px';
                     newButton.ondragstart = drag;
                     document.body.appendChild(newButton);
                     this.innerText = '';
