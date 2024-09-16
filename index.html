@@ -22,11 +22,11 @@
 <body>
     <div class="container">
         <table border="1" class="emploie" id="emploie1">
-            <tr><td><button id="11"></button></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td><button id="11"></button></td><td><button id="12"></button></td><td><button id="13"></button></td><td><button id="14"></button></td><td><button id="15"></button></td><td><button id="16"></button></td><td><button id="17"></button></td></tr>
+            <tr><td><button id="21"></button></td><td><button id="22"></button></td><td><button id="23"></button></td><td><button id="24"></button></td><td><button id="25"></button></td><td><button id="26"></button></td><td><button id="27"></button></td></tr>
+            <tr><td><button id="31"></button></td><td><button id="32"></button></td><td><button id="33"></button></td><td><button id="34"></button></td><td><button id="35"></button></td><td><button id="36"></button></td><td><button id="37"></button></td></tr>
+            <tr><td><button id="41"></button></td><td><button id="42"></button></td><td><button id="43"></button></td><td><button id="44"></button></td><td><button id="45"></button></td><td><button id="46"></button></td><td><button id="47"></button></td></tr>
+            <tr><td><button id="51"></button></td><td><button id="52"></button></td><td><button id="53"></button></td><td><button id="54"></button></td><td><button id="55"></button></td><td><button id="56"></button></td><td><button id="57"></button></td></tr>
         </table>
     </div>
     <footer>
@@ -36,8 +36,12 @@
         let b1 = document.getElementById("b11");
         b1.addEventListener('click', function() {
             let v11 = b1.value;
-            let td11 = document.getElementById("11");
-            td11.innerText = v11;
+            let buttons = document.querySelectorAll('table button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.innerText = v11;
+                });
+            });
         });
     </script>
 </body>
