@@ -143,7 +143,7 @@
        
     </footer>
     <script>
-     document.querySelectorAll('button').forEach(button => {
+    document.querySelectorAll('button').forEach(button => {
     button.draggable = true;
     button.addEventListener('dragstart', dragStart);
     button.addEventListener('dragend', dragEnd);
@@ -173,10 +173,11 @@ function drop(event) {
     event.preventDefault();
     const id = event.dataTransfer.getData('text');
     const draggable = document.getElementById(id);
-    if (event.target.tagName === 'TD') {
+    if (event.target.tagName === 'TD' && !event.target.querySelector('button')) {
         event.target.appendChild(draggable);
     }
 }
+
 
 
 
