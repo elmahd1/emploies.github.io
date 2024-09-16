@@ -134,28 +134,43 @@ function drop(event) {
     const draggable = document.getElementById(id);
     event.target.appendChild(draggable);
 }
+function downloadTableAsHTML() {
+    let table = document.querySelector("table").outerHTML;
+    let htmlContent = `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Table</title>
+            <style>
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+                th, td {
+                    border: 1px solid #ddd;
+                    padding: 8px;
+                    text-align: center;
+                }
+                th {
+                    background-color: #f2f2f2;
+                }
+            </style>
+        </head>
+        <body>
+            ${table}
+        </body>
+        </html>
+    `;
 
-function downloadTableAsCSV() {
-    let csv = [];
-    let rows = document.querySelectorAll("table tr");
-
-    for (let i = 0; i < rows.length; i++) {
-        let row = [], cols = rows[i].querySelectorAll("td, th");
-
-        for (let j = 0; j < cols.length; j++) {
-            row.push(cols[j].innerText);
-        }
-
-        csv.push(row.join(","));
-    }
-
-    // Create a CSV file
-    let csvFile = new Blob([csv.join("\n")], { type: "text/csv" });
+    // Create an HTML file
+    let htmlFile = new Blob([htmlContent], { type: "text/html" });
 
     // Create a download link
     let downloadLink = document.createElement("a");
-    downloadLink.download = "table.csv";
-    downloadLink.href = window.URL.createObjectURL(csvFile);
+    downloadLink.download = "table.html";
+    downloadLink.href = window.URL.createObjectURL(htmlFile);
     downloadLink.style.display = "none";
 
     // Append the link to the body
@@ -170,8 +185,8 @@ function downloadTableAsCSV() {
 
 // Add a button to trigger the download
 let downloadButton = document.createElement("button");
-downloadButton.innerText = "Download Table as CSV";
-downloadButton.onclick = downloadTableAsCSV;
+downloadButton.innerText = "Download Table as HTML";
+downloadButton.onclick = downloadTableAsHTML;
 document.body.appendChild(downloadButton);
 
     </script>
