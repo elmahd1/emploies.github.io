@@ -31,10 +31,21 @@
     </div>
     <footer>
         <button id="b11" style="height: 20px; width: 20px;" value="nice">nice</button>
+        <button id="b12" style="height: 20px; width: 20px;" value="niceX2">nice</button>
     </footer>
     <script>
         let b1 = document.getElementById("b11");
         b1.addEventListener('click', function() {
+            let v11 = b1.value;
+            let buttons = document.querySelectorAll('table button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.innerText = v11;
+                });
+            });
+        });
+        let b2 = document.getElementById("b12");
+        b2.addEventListener('click', function() {
             let v11 = b1.value;
             let buttons = document.querySelectorAll('table button');
             buttons.forEach(button => {
