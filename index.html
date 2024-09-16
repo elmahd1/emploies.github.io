@@ -143,27 +143,16 @@
        
     </footer>
     <script>
-    document.querySelectorAll('button').forEach(button => {
+ document.querySelectorAll('button').forEach(button => {
     button.draggable = true;
     button.addEventListener('dragstart', dragStart);
-    button.addEventListener('dragend', dragEnd);
+    button.addEventListener('dragover', dragOver);
+    button.addEventListener('drop', drop);
 });
 
 function dragStart(event) {
-    event.dataTransfer.setData('text/plain', event.target.id);
-    setTimeout(() => {
-        event.target.style.display = 'none';
-    }, 0);
+    event.dataTransfer.setData('text/plain', event.target.innerText);
 }
-
-function dragEnd(event) {
-    event.target.style.display = 'block';
-}
-
-document.querySelectorAll('td').forEach(cell => {
-    cell.addEventListener('dragover', dragOver);
-    cell.addEventListener('drop', drop);
-});
 
 function dragOver(event) {
     event.preventDefault();
@@ -171,11 +160,8 @@ function dragOver(event) {
 
 function drop(event) {
     event.preventDefault();
-    const id = event.dataTransfer.getData('text');
-    const draggable = document.getElementById(id);
-    if (event.target.tagName === 'TD' && !event.target.querySelector('button')) {
-        event.target.appendChild(draggable);
-    }
+    const text = event.dataTransfer.getData('text/plain');
+    event.target.innerText = text;
 }
 
 
