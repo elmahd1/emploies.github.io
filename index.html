@@ -102,39 +102,39 @@
        
     </footer>
     <script>
-       function drag(event) {
-            event.dataTransfer.setData("text", event.target.id);
-        }
+     document.querySelectorAll('button').forEach(button => {
+    button.draggable = true;
+    button.addEventListener('dragstart', dragStart);
+    button.addEventListener('dragend', dragEnd);
+});
 
-        let tableButtons = document.querySelectorAll('table button');
-        tableButtons.forEach(button => {
-            button.ondragover = function(event) {
-                event.preventDefault();
-            };
-            button.ondrop = function(event) {
-                event.preventDefault();
-                let data = event.dataTransfer.getData("text");
-                let draggedButton = document.getElementById(data);
-                this.innerText = draggedButton.value;
-                draggedButton.style.display = 'none'; // Hide the button after dragging
-            };
-        });
+function dragStart(event) {
+    event.dataTransfer.setData('text/plain', event.target.id);
+    setTimeout(() => {
+        event.target.style.display = 'none';
+    }, 0);
+}
 
-        // Make the buttons draggable again from the table
-        tableButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                if (this.innerText !== '') {
-                    let newButton = document.createElement('button');
-                    newButton.innerText = this.innerText;
-                    newButton.value = this.innerText;
-                    newButton.draggable = true;
-                    newButton.style.width='70px';
-                    newButton.ondragstart = drag;
-                    document.body.appendChild(newButton);
-                    this.innerText = '';
-                }
-            });
-        });
+function dragEnd(event) {
+    event.target.style.display = 'block';
+}
+
+document.querySelectorAll('td').forEach(cell => {
+    cell.addEventListener('dragover', dragOver);
+    cell.addEventListener('drop', drop);
+});
+
+function dragOver(event) {
+    event.preventDefault();
+}
+
+function drop(event) {
+    event.preventDefault();
+    const id = event.dataTransfer.getData('text');
+    const draggable = document.getElementById(id);
+    event.target.appendChild(draggable);
+}
+
     </script>
 </body>
 </html>
