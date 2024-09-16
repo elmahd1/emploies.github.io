@@ -232,7 +232,7 @@
         </table>
     </div>
     <div class="container" >
-        <table style="margin-bottom: 30px;">
+        <table style="margin-bottom: 50px;">
             <tr><th>Jour</th><th>8:30 - 9:30</th><th>9:30 - 10:30</th><th>10:45 - 11:45</th><th></th  style="width: 10px; background-color: rgba(0,0,0,0.1);"><th>14:30 - 15:30</th><th>15:30 - 16:30</th><th>16:45 - 17:45</th></tr>
             <tr><td>lundi</td><td><button id="12"></button></td><td><button id="13"></button></td><td><button id="14"></button></td><td style="width: 10px; background-color: rgba(0,0,0,0.1);"></td><td><button id="15"></button></td><td><button id="16"></button></td><td><button id="17"></button></td></tr>
             <tr><td>mardi</td><td><button id="22"></button></td><td><button id="23"></button></td><td><button id="24"></button></td><td style="width: 10px; background-color: rgba(0,0,0,0.1);"></td><td><button id="25"></button></td><td><button id="26"></button></td><td><button id="27"></button></td></tr>
@@ -260,8 +260,7 @@
             <button id="b31" value="ENGLAIS">ENGLAIS</button>
             <div class="pocket-content">
                 <button id="b32" value="flana">flana</button>
-                <button id="b32" value="flana">flana</button>
-                <button id="b32" value="flana">flana</button>
+              
             </div>
         </div>
         <div class="pocket green"></div>
@@ -272,7 +271,7 @@
         </div>
     </footer>
     <script>
-        function drag(event) {
+       function drag(event) {
             event.dataTransfer.setData("text", event.target.id);
         }
 
@@ -286,7 +285,23 @@
                 let data = event.dataTransfer.getData("text");
                 let draggedButton = document.getElementById(data);
                 this.innerText = draggedButton.value;
+                draggedButton.style.display = 'none'; // Hide the button after dragging
             };
+        });
+
+        // Make the buttons draggable again from the table
+        tableButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                if (this.innerText !== '') {
+                    let newButton = document.createElement('button');
+                    newButton.innerText = this.innerText;
+                    newButton.value = this.innerText;
+                    newButton.draggable = true;
+                    newButton.ondragstart = drag;
+                    document.body.appendChild(newButton);
+                    this.innerText = '';
+                }
+            });
         });
     </script>
 </body>
