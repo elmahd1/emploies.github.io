@@ -173,8 +173,13 @@ function drop(event) {
     event.preventDefault();
     const id = event.dataTransfer.getData('text');
     const draggable = document.getElementById(id);
-    event.target.appendChild(draggable);
+    if (event.target.tagName === 'TD') {
+        event.target.appendChild(draggable);
+    }
 }
+
+
+
 function downloadTableAsCSV() {
     let csv = [];
     let rows = document.querySelectorAll("table tr");
