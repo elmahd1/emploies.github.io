@@ -245,9 +245,8 @@
         <div class="pocket red">
             <button id="b11" value="Math">MATHEMATIQUES</button>
             <div class="pocket-content">
-                <button id="b12" value="T.OUHIK">T.OUHIK</button>
-                <button id="b12" value="T.OUHIK">T.OUHIK</button>
-                <button id="b12" value="T.OUHIK">T.OUHIK</button>
+                <button id="b12" value="T.OUHIK"  draggable="true" ondragstart="drag(event)">T.OUHIK</button>
+               
             </div>
         </div>
         <div class="pocket blue">
@@ -274,17 +273,21 @@
         </div>
     </footer>
     <script>
-        let buttons = document.querySelectorAll('footer button');
-        buttons.forEach(button => {
-            button.addEventListener('click', function() {
-                let value = this.value;
-                let tableButtons = document.querySelectorAll('table button');
-                tableButtons.forEach(tb => {
-                    tb.addEventListener('click', function() {
-                        this.innerText = value;
-                    });
-                });
-            });
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.id);
+        }
+
+        let tableButtons = document.querySelectorAll('table button');
+        tableButtons.forEach(button => {
+            button.ondragover = function(event) {
+                event.preventDefault();
+            };
+            button.ondrop = function(event) {
+                event.preventDefault();
+                let data = event.dataTransfer.getData("text");
+                let draggedButton = document.getElementById(data);
+                this.innerText = draggedButton.value;
+            };
         });
     </script>
 </body>
