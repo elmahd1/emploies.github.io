@@ -135,6 +135,45 @@ function drop(event) {
     event.target.appendChild(draggable);
 }
 
+function downloadTableAsCSV() {
+    let csv = [];
+    let rows = document.querySelectorAll("table tr");
+
+    for (let i = 0; i < rows.length; i++) {
+        let row = [], cols = rows[i].querySelectorAll("td, th");
+
+        for (let j = 0; j < cols.length; j++) {
+            row.push(cols[j].innerText);
+        }
+
+        csv.push(row.join(","));
+    }
+
+    // Create a CSV file
+    let csvFile = new Blob([csv.join("\n")], { type: "text/csv" });
+
+    // Create a download link
+    let downloadLink = document.createElement("a");
+    downloadLink.download = "table.csv";
+    downloadLink.href = window.URL.createObjectURL(csvFile);
+    downloadLink.style.display = "none";
+
+    // Append the link to the body
+    document.body.appendChild(downloadLink);
+
+    // Click the link to download the file
+    downloadLink.click();
+
+    // Remove the link from the document
+    document.body.removeChild(downloadLink);
+}
+
+// Add a button to trigger the download
+let downloadButton = document.createElement("button");
+downloadButton.innerText = "Download Table as CSV";
+downloadButton.onclick = downloadTableAsCSV;
+document.body.appendChild(downloadButton);
+
     </script>
 </body>
 </html>
