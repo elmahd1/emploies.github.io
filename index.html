@@ -94,68 +94,61 @@
         <div class="pocket red">
             <button id="math">Math</button>
             <div class="pocket-content">
-                <button draggable="true" id="drag1">Math</button>
+                <button id="drag1">Math</button>
             </div>
         </div>
         <div class="pocket red">
             <button id="arabe">Arabe</button>
             <div class="pocket-content">
-                <button draggable="true" id="drag2">Arabe</button>
+                <button  id="drag2">Arabe</button>
             </div>
         </div>
         <div class="pocket red">
             <button id="svt">SVT</button>
             <div class="pocket-content">
-                <button draggable="true" id="drag3">SVT</button>
+                <button  id="drag3">SVT</button>
             </div>
         </div>
         <div class="pocket red">
             <button id="anglais">Anglais</button>
             <div class="pocket-content">
-                <button draggable="true" id="drag4">Anglais</button>
+                <button  id="drag4">Anglais</button>
             </div>
         </div>
     </footer>
     
-    <script>
-      document.querySelectorAll('button').forEach(button => {
-    button.draggable = true;
-    button.addEventListener('dragstart', dragStart);
-    button.addEventListener('dragover', dragOver);
-    button.addEventListener('drop', drop);
-});
+    <script>let selectedText = null;
 
-function dragStart(event) {
-    // Set the button's ID so we can refer to it later
-    event.dataTransfer.setData('text/plain', event.target.id);
-    setTimeout(() => {
-        // Hide the button during drag to give a better visual cue
-        event.target.style.visibility = 'hidden';
-    }, 0);
-}
-
-function dragOver(event) {
-    event.preventDefault();
-}
-
-function drop(event) {
-    event.preventDefault();
-    const buttonId = event.dataTransfer.getData('text/plain');
-    const draggedButton = document.getElementById(buttonId);
-    if (event.target.tagName === 'BUTTON') {
-        // If you drop onto another button, replace the buttons' positions
-        const targetButton = event.target;
-        const tempText = targetButton.innerText;
-        targetButton.innerText = draggedButton.innerText;
-        draggedButton.innerText = tempText;
-    } else if (event.target.tagName === 'TD') {
-        // If you drop on a table cell, move the button there
-        event.target.appendChild(draggedButton);
-    }
-    // Make the dragged button visible again
-    draggedButton.style.visibility = 'visible';
-}
-
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Store the text of the clicked button
+                selectedText = button.innerText;
+            });
+        
+            button.addEventListener('mouseover', (event) => {
+                // Temporarily show the selected text when hovering over another button
+                if (selectedText && event.target.innerText !== selectedText) {
+                    event.target.dataset.originalText = event.target.innerText; // Save the original text
+                    event.target.innerText = selectedText;
+                }
+            });
+        
+            button.addEventListener('mouseout', (event) => {
+                // Restore the original text when the mouse leaves the button
+                if (event.target.dataset.originalText) {
+                    event.target.innerText = event.target.dataset.originalText;
+                }
+            });
+        
+            button.addEventListener('click', (event) => {
+                // Permanently set the selected text when the button is clicked
+                if (selectedText) {
+                    event.target.innerText = selectedText;
+                    selectedText = null; // Clear the selected text after use
+                }
+            });
+        });
+        
     </script>
 </body>
 </html>
