@@ -11,7 +11,6 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            
             margin: 0;
             max-height: 10000px;
         }
@@ -20,7 +19,7 @@
         }
         table {
             width: 100%;
-          width: 600px;
+            max-width: 600px;
             border-collapse: collapse;
         }
         th, td {
@@ -80,133 +79,68 @@
     </style>
 </head>
 <body>
-    <div class="container" >
+    <div class="container">
         <table>
-            <tr><th>Jour</th><th>8:30 - 9:30</th><th>9:30 - 10:30</th><th>10:45 - 11:45</th><th></th  style="width: 10px; background-color: rgba(0,0,0,0.1);"><th>14:30 - 15:30</th><th>15:30 - 16:30</th><th>16:45 - 17:45</th></tr>
-            <tr><td>lundi</td><td><button id="12"></button></td><td><button id="13"></button></td><td><button id="14"></button></td><td style="width: 10px; background-color: rgba(0,0,0,0.1);"></td><td><button id="15"></button></td><td><button id="16"></button></td><td><button id="17"></button></td></tr>
-            <tr><td>mardi</td><td><button id="22"></button></td><td><button id="23"></button></td><td><button id="24"></button></td><td style="width: 10px; background-color: rgba(0,0,0,0.1);"></td><td><button id="25"></button></td><td><button id="26"></button></td><td><button id="27"></button></td></tr>
-            <tr><td>mercredi</td><td><button id="32"></button></td><td><button id="33"></button></td><td><button id="34"></button></td><td style="width: 10px; background-color: rgba(0,0,0,0.1);"></td><td><button id="35"></button></td><td><button id="36"></button></td><td><button id="37"></button></td></tr>
-            <tr><td>jeudi</td><td><button id="42"></button></td><td><button id="43"></button></td><td><button id="44"></button></td><td style="width: 10px; background-color: rgba(0,0,0,0.1);"></td><td><button id="45"></button></td><td><button id="46"></button></td><td><button id="47"></button></td></tr>
-            <tr><td>vendredi</td><td><button id="52"></button></td><td><button id="53"></button></td><td><button id="54"></button></td><td style="width: 10px; background-color: rgba(0,0,0,0.1);"></td><td><button id="55"></button></td><td><button id="56"></button></td><td><button id="57"></button></td></tr>
+            <tr><th>Jour</th><th>8:30 - 9:30</th><th>9:30 - 10:30</th><th>10:45 - 11:45</th><th></th><th>14:30 - 15:30</th><th>15:30 - 16:30</th><th>16:45 - 17:45</th></tr>
+            <tr><td>lundi</td><td><button id="12"></button></td><td><button id="13"></button></td><td><button id="14"></button></td><td></td><td><button id="15"></button></td><td><button id="16"></button></td><td><button id="17"></button></td></tr>
+            <tr><td>mardi</td><td><button id="22"></button></td><td><button id="23"></button></td><td><button id="24"></button></td><td></td><td><button id="25"></button></td><td><button id="26"></button></td><td><button id="27"></button></td></tr>
+            <tr><td>mercredi</td><td><button id="32"></button></td><td><button id="33"></button></td><td><button id="34"></button></td><td></td><td><button id="35"></button></td><td><button id="36"></button></td><td><button id="37"></button></td></tr>
+            <tr><td>jeudi</td><td><button id="42"></button></td><td><button id="43"></button></td><td><button id="44"></button></td><td></td><td><button id="45"></button></td><td><button id="46"></button></td><td><button id="47"></button></td></tr>
+            <tr><td>vendredi</td><td><button id="52"></button></td><td><button id="53"></button></td><td><button id="54"></button></td><td></td><td><button id="55"></button></td><td><button id="56"></button></td><td><button id="57"></button></td></tr>
         </table>
     </div>
    
     <footer>
         <div class="pocket red">
-            <button id="b11" value="math">math</button>
+            <button id="math">Math</button>
             <div class="pocket-content">
-                <button id="b12" value="math"  draggable="true" ondragstart="drag(event)">math</button>
-                <button id="b12" value="math"  draggable="true" ondragstart="drag(event)">math</button>
-                <button id="b12" value="math"  draggable="true" ondragstart="drag(event)">math</button>
-                <button id="b12" value="math"  draggable="true" ondragstart="drag(event)">math</button>
+                <button draggable="true" id="drag1">Math</button>
             </div>
         </div>
         <div class="pocket red">
-            <button id="b11" value="arabe">arabe</button>
+            <button id="arabe">Arabe</button>
             <div class="pocket-content">
-                <button id="b12" value="arabe"  draggable="true" ondragstart="drag(event)">arabe</button>
-                <button id="b12" value="arabe"  draggable="true" ondragstart="drag(event)">arabe</button>
-                <button id="b12" value="arabe"  draggable="true" ondragstart="drag(event)">arabe</button>
-                <button id="b12" value="arabe"  draggable="true" ondragstart="drag(event)">arabe</button>
-                <button id="b12" value="arabe"  draggable="true" ondragstart="drag(event)">arabe</button>
-                <button id="b12" value="arabe"  draggable="true" ondragstart="drag(event)">arabe</button>
-                <button id="b12" value="arabe"  draggable="true" ondragstart="drag(event)">arabe</button>
+                <button draggable="true" id="drag2">Arabe</button>
             </div>
         </div>
         <div class="pocket red">
-            <button id="b11" value="svt">svt</button>
+            <button id="svt">SVT</button>
             <div class="pocket-content">
-                <button id="b12" value="svt"  draggable="true" ondragstart="drag(event)">svt</button>
-                <button id="b12" value="svt"  draggable="true" ondragstart="drag(event)">svt</button>
-               
+                <button draggable="true" id="drag3">SVT</button>
             </div>
         </div>
         <div class="pocket red">
-            <button id="b11" value="englais">englais</button>
+            <button id="anglais">Anglais</button>
             <div class="pocket-content">
-                <button id="b12" value="englais"  draggable="true" ondragstart="drag(event)">englais</button>
-                <button id="b12" value="englais"  draggable="true" ondragstart="drag(event)">englais</button>
+                <button draggable="true" id="drag4">Anglais</button>
             </div>
         </div>
-        <div class="pocket red">
-            <button id="b11" value="francais">francais</button>
-            <div class="pocket-content">
-                <button id="b12" value="francais"  draggable="true" ondragstart="drag(event)">francais</button>
-                <button id="b12" value="francais"  draggable="true" ondragstart="drag(event)">francais</button>
-                <button id="b12" value="francais"  draggable="true" ondragstart="drag(event)">francais</button>
-                <button id="b12" value="francais"  draggable="true" ondragstart="drag(event)">francais</button>
-                <button id="b12" value="francais"  draggable="true" ondragstart="drag(event)">francais</button>
-                <button id="b12" value="francais"  draggable="true" ondragstart="drag(event)">francais</button>
-                <button id="b12" value="francais"  draggable="true" ondragstart="drag(event)">francais</button>
-            </div>
-        </div>
-       
     </footer>
+    
     <script>
- document.querySelectorAll('button').forEach(button => {
-    button.draggable = true;
-    button.addEventListener('dragstart', dragStart);
-    button.addEventListener('dragover', dragOver);
-    button.addEventListener('drop', drop);
-});
+        let draggedButton = null;
 
-function dragStart(event) {
-    event.dataTransfer.setData('text/plain', event.target.innerText);
-}
+        document.querySelectorAll('button[draggable=true]').forEach(button => {
+            button.addEventListener('dragstart', (event) => {
+                draggedButton = event.target;  // Keep track of the dragged button
+            });
+        });
 
-function dragOver(event) {
-    event.preventDefault();
-}
+        document.querySelectorAll('td button').forEach(cellButton => {
+            cellButton.addEventListener('dragover', (event) => {
+                event.preventDefault();
+            });
 
-function drop(event) {
-    event.preventDefault();
-    const text = event.dataTransfer.getData('text/plain');
-    event.target.innerText = text;
-}
-
-
-
-
-function downloadTableAsCSV() {
-    let csv = [];
-    let rows = document.querySelectorAll("table tr");
-
-    for (let i = 0; i < rows.length; i++) {
-        let row = [], cols = rows[i].querySelectorAll("td, th");
-
-        for (let j = 0; j < cols.length; j++) {
-            row.push(cols[j].innerText);
-        }
-
-        csv.push(row.join(","));
-    }
-
-    // Create a CSV file
-    let csvFile = new Blob([csv.join("\n")], { type: "text/csv" });
-
-    // Create a download link
-    let downloadLink = document.createElement("a");
-    downloadLink.download = "table.csv";
-    downloadLink.href = window.URL.createObjectURL(csvFile);
-    downloadLink.style.display = "none";
-
-    // Append the link to the body
-    document.body.appendChild(downloadLink);
-
-    // Click the link to download the file
-    downloadLink.click();
-
-    // Remove the link from the document
-    document.body.removeChild(downloadLink);
-}
-
-// Add a button to trigger the download
-let downloadButton = document.createElement("button");
-downloadButton.innerText = "Download Table as CSV";
-downloadButton.onclick = downloadTableAsCSV;
-document.body.appendChild(downloadButton);
-
-
+            cellButton.addEventListener('drop', (event) => {
+                event.preventDefault();
+                if (draggedButton) {
+                    // Move the dragged button to the new cell and clear the original cell
+                    event.target.innerText = draggedButton.innerText;
+                    draggedButton.parentElement.removeChild(draggedButton);  // Remove button from the original place
+                    draggedButton = null;
+                }
+            });
+        });
     </script>
 </body>
 </html>
