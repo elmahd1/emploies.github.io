@@ -116,36 +116,44 @@
     </div>
 
     <script>
-        function toggleCategory(listId) {
-            const list = document.getElementById(listId);
-            list.style.display = list.style.display === 'block' ? 'none' : 'block';
-        }
+    
+    // Function to toggle category visibility
+    function toggleCategory(listId) {
+        const list = document.getElementById(listId);
+        list.style.display = list.style.display === 'block' ? 'none' : 'block';
+    }
 
-        const draggables = document.querySelectorAll('.draggable');
-        const droppables = document.querySelectorAll('.droppable');
+    const draggables = document.querySelectorAll('.draggable');
+    const droppables = document.querySelectorAll('.droppable');
 
-        draggables.forEach(draggable => {
-            draggable.addEventListener('dragstart', (e) => {
-                e.dataTransfer.setData('text', e.target.id);
-            });
+    // Enable drag functionality on draggable elements (teacher names)
+    draggables.forEach(draggable => {
+        draggable.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('text', e.target.id);
+        });
+    });
+
+    // Enable droppable functionality on table cells
+    droppables.forEach(droppable => {
+        droppable.addEventListener('dragover', (e) => {
+            e.preventDefault(); // Allow the drop
         });
 
-        droppables.forEach(droppable => {
-            droppable.addEventListener('dragover', (e) => {
-                e.preventDefault();
-            });
-
-            droppable.addEventListener('drop', (e) => {
-                e.preventDefault();
-                const teacherId = e.dataTransfer.getData('text');
-                const teacherElement = document.getElementById(teacherId);
-                if (teacherElement) {
-                    e.target.innerHTML = '';  // Clear the cell
-                    e.target.appendChild(teacherElement.cloneNode(true));  // Append the teacher's name
-                }
-            });
+        droppable.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const teacherId = e.dataTransfer.getData('text'); // Get the ID of the dragged element
+            const teacherElement = document.getElementById(teacherId);
+            
+            if (teacherElement) {
+                // Clear the cell and append the dragged teacher's name
+                e.target.innerHTML = '';
+                e.target.appendChild(teacherElement.cloneNode(true)); // Clone the teacher's name and append
+            }
         });
-    </script>
+    });
+</script>
+
+   
 
 </body>
 </html>
