@@ -26,25 +26,27 @@
             border: 1px solid #ddd;
             padding: 8px;
             text-align: center;
-            height: 60px;
+            min-height: 40px;
+            position: relative;
         }
         th {
             background-color: #f2f2f2;
         }
-        .droppable {
-            width: 100%;
-            height: 100%;
-        }
         .draggable {
-            width: 100%;
-            padding: 10px;
-            text-align: center;
+            display: inline-block;
+            padding: 5px 10px;
             background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            cursor: grab;
+            border: 1px solid #ccc;
+            cursor: move;
         }
-        .draggable:hover {
-            background-color: #ddd;
+        .subject-container {
+            margin-bottom: 20px;
+        }
+        .subject-category {
+            margin: 10px 0;
+        }
+        .droppable {
+            min-height: 40px;
         }
         footer {
             position: fixed;
@@ -56,89 +58,70 @@
             padding: 10px;
             box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
         }
-        .pocket {
-            position: relative;
-            display: inline-block;
-            margin: 0 10px;
-        }
-        .pocket-content {
-            display: flex;
-            gap: 10px;
-        }
-        .subject {
-            padding: 10px;
-            background-color: #ffcccc;
-            border: 1px solid #ddd;
-            cursor: grab;
-        }
     </style>
 </head>
 <body>
+
     <div class="container">
+        <div class="subject-container">
+            <div class="subject-category">
+                <h3>Math</h3>
+                <div class="draggable" draggable="true" id="teacher1">Mr. Dupont</div>
+                <div class="draggable" draggable="true" id="teacher2">Mme. Leblanc</div>
+            </div>
+            <div class="subject-category">
+                <h3>Arabe</h3>
+                <div class="draggable" draggable="true" id="teacher3">M. Ali</div>
+                <div class="draggable" draggable="true" id="teacher4">Mme. Khalifa</div>
+            </div>
+            <div class="subject-category">
+                <h3>SVT</h3>
+                <div class="draggable" draggable="true" id="teacher5">Mr. Martin</div>
+                <div class="draggable" draggable="true" id="teacher6">Mme. Laurent</div>
+            </div>
+            <div class="subject-category">
+                <h3>Anglais</h3>
+                <div class="draggable" draggable="true" id="teacher7">Ms. Smith</div>
+                <div class="draggable" draggable="true" id="teacher8">Mr. Brown</div>
+            </div>
+        </div>
+
         <table>
             <tr><th>Jour</th><th>8:30 - 9:30</th><th>9:30 - 10:30</th><th>10:45 - 11:45</th><th></th><th>14:30 - 15:30</th><th>15:30 - 16:30</th><th>16:45 - 17:45</th></tr>
-            <tr><td>lundi</td><td class="droppable" id="12"></td><td class="droppable" id="13"></td><td class="droppable" id="14"></td><td></td><td class="droppable" id="15"></td><td class="droppable" id="16"></td><td class="droppable" id="17"></td></tr>
-            <tr><td>mardi</td><td class="droppable" id="22"></td><td class="droppable" id="23"></td><td class="droppable" id="24"></td><td></td><td class="droppable" id="25"></td><td class="droppable" id="26"></td><td class="droppable" id="27"></td></tr>
-            <tr><td>mercredi</td><td class="droppable" id="32"></td><td class="droppable" id="33"></td><td class="droppable" id="34"></td><td></td><td class="droppable" id="35"></td><td class="droppable" id="36"></td><td class="droppable" id="37"></td></tr>
-            <tr><td>jeudi</td><td class="droppable" id="42"></td><td class="droppable" id="43"></td><td class="droppable" id="44"></td><td></td><td class="droppable" id="45"></td><td class="droppable" id="46"></td><td class="droppable" id="47"></td></tr>
-            <tr><td>vendredi</td><td class="droppable" id="52"></td><td class="droppable" id="53"></td><td class="droppable" id="54"></td><td></td><td class="droppable" id="55"></td><td class="droppable" id="56"></td><td class="droppable" id="57"></td></tr>
+            <tr><td>lundi</td><td class="droppable"></td><td class="droppable"></td><td class="droppable"></td><td></td><td class="droppable"></td><td class="droppable"></td><td class="droppable"></td></tr>
+            <tr><td>mardi</td><td class="droppable"></td><td class="droppable"></td><td class="droppable"></td><td></td><td class="droppable"></td><td class="droppable"></td><td class="droppable"></td></tr>
+            <tr><td>mercredi</td><td class="droppable"></td><td class="droppable"></td><td class="droppable"></td><td></td><td class="droppable"></td><td class="droppable"></td><td class="droppable"></td></tr>
+            <tr><td>jeudi</td><td class="droppable"></td><td class="droppable"></td><td class="droppable"></td><td></td><td class="droppable"></td><td class="droppable"></td><td class="droppable"></td></tr>
+            <tr><td>vendredi</td><td class="droppable"></td><td class="droppable"></td><td class="droppable"></td><td></td><td class="droppable"></td><td class="droppable"></td><td class="droppable"></td></tr>
         </table>
     </div>
-   
-    <footer>
-        <div class="pocket-content">
-            <div class="subject draggable" id="math" draggable="true">Math</div>
-            <div class="subject draggable" id="arabe" draggable="true">Arabe</div>
-            <div class="subject draggable" id="svt" draggable="true">SVT</div>
-            <div class="subject draggable" id="anglais" draggable="true">Anglais</div>
-        </div>
-    </footer>
 
     <script>
-        // Drag event handling for subjects
-        const subjects = document.querySelectorAll('.draggable');
-        let draggedItem = null;
+        const draggables = document.querySelectorAll('.draggable');
+        const droppables = document.querySelectorAll('.droppable');
 
-        subjects.forEach(subject => {
-            subject.addEventListener('dragstart', (event) => {
-                draggedItem = subject;
-                setTimeout(() => {
-                    subject.style.display = 'none';
-                }, 0);
-            });
-
-            subject.addEventListener('dragend', () => {
-                setTimeout(() => {
-                    draggedItem.style.display = 'block';
-                    draggedItem = null;
-                }, 0);
+        draggables.forEach(draggable => {
+            draggable.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text', e.target.id);
             });
         });
 
-        // Allow dropping into table cells
-        const droppables = document.querySelectorAll('.droppable');
-
-        droppables.forEach(cell => {
-            cell.addEventListener('dragover', (event) => {
-                event.preventDefault();
+        droppables.forEach(droppable => {
+            droppable.addEventListener('dragover', (e) => {
+                e.preventDefault();
             });
 
-            cell.addEventListener('dragenter', () => {
-                cell.style.backgroundColor = '#f0f0f0';
-            });
-
-            cell.addEventListener('dragleave', () => {
-                cell.style.backgroundColor = '';
-            });
-
-            cell.addEventListener('drop', () => {
-                cell.style.backgroundColor = '';
-                if (draggedItem) {
-                    cell.innerHTML = ''; // Clear the cell before dropping
-                    cell.appendChild(draggedItem); // Move the dragged item into the cell
+            droppable.addEventListener('drop', (e) => {
+                e.preventDefault();
+                const teacherId = e.dataTransfer.getData('text');
+                const teacherElement = document.getElementById(teacherId);
+                if (teacherElement) {
+                    e.target.innerHTML = '';  // Clear the cell
+                    e.target.appendChild(teacherElement.cloneNode(true));  // Append the teacher's name
                 }
             });
         });
     </script>
+
 </body>
 </html>
