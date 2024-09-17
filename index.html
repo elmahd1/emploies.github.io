@@ -3,23 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>emploies de temps</title>
+    <title>Emploi du Temps</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             margin: 0;
-            max-height: 10000px;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .teacher-container {
+            width: 250px;
+            background-color: #f1f1f1;
+            padding: 10px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+        }
+        .teacher-category {
+            margin-bottom: 20px;
+        }
+        .category-title {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .teacher-list {
+            display: none;
+            margin-top: 10px;
+        }
+        .teacher-list .draggable {
+            display: block;
+            padding: 5px;
+            margin: 5px 0;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            cursor: move;
+            text-align: center;
         }
         .container {
-            margin-top: 20px;
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 20px;
         }
         table {
             width: 100%;
-            max-width: 600px;
+            max-width: 800px;
             border-collapse: collapse;
         }
         th, td {
@@ -32,60 +66,45 @@
         th {
             background-color: #f2f2f2;
         }
-        .draggable {
-            display: inline-block;
-            padding: 5px 10px;
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-            cursor: move;
-        }
-        .subject-container {
-            margin-bottom: 20px;
-        }
-        .subject-category {
-            margin: 10px 0;
-        }
         .droppable {
             min-height: 40px;
-        }
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            background-color: #f1f1f1;
-            padding: 10px;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="subject-container">
-            <div class="subject-category">
-                <h3>Math</h3>
+    <div class="teacher-container">
+        <div class="teacher-category">
+            <div class="category-title" onclick="toggleCategory('math-list')">Math</div>
+            <div class="teacher-list" id="math-list">
                 <div class="draggable" draggable="true" id="teacher1">Mr. Dupont</div>
                 <div class="draggable" draggable="true" id="teacher2">Mme. Leblanc</div>
             </div>
-            <div class="subject-category">
-                <h3>Arabe</h3>
+        </div>
+        <div class="teacher-category">
+            <div class="category-title" onclick="toggleCategory('arabe-list')">Arabe</div>
+            <div class="teacher-list" id="arabe-list">
                 <div class="draggable" draggable="true" id="teacher3">M. Ali</div>
                 <div class="draggable" draggable="true" id="teacher4">Mme. Khalifa</div>
             </div>
-            <div class="subject-category">
-                <h3>SVT</h3>
+        </div>
+        <div class="teacher-category">
+            <div class="category-title" onclick="toggleCategory('svt-list')">SVT</div>
+            <div class="teacher-list" id="svt-list">
                 <div class="draggable" draggable="true" id="teacher5">Mr. Martin</div>
                 <div class="draggable" draggable="true" id="teacher6">Mme. Laurent</div>
             </div>
-            <div class="subject-category">
-                <h3>Anglais</h3>
+        </div>
+        <div class="teacher-category">
+            <div class="category-title" onclick="toggleCategory('anglais-list')">Anglais</div>
+            <div class="teacher-list" id="anglais-list">
                 <div class="draggable" draggable="true" id="teacher7">Ms. Smith</div>
                 <div class="draggable" draggable="true" id="teacher8">Mr. Brown</div>
             </div>
         </div>
+    </div>
 
+    <div class="container">
         <table>
             <tr><th>Jour</th><th>8:30 - 9:30</th><th>9:30 - 10:30</th><th>10:45 - 11:45</th><th></th><th>14:30 - 15:30</th><th>15:30 - 16:30</th><th>16:45 - 17:45</th></tr>
             <tr><td>lundi</td><td class="droppable"></td><td class="droppable"></td><td class="droppable"></td><td></td><td class="droppable"></td><td class="droppable"></td><td class="droppable"></td></tr>
@@ -97,6 +116,11 @@
     </div>
 
     <script>
+        function toggleCategory(listId) {
+            const list = document.getElementById(listId);
+            list.style.display = list.style.display === 'block' ? 'none' : 'block';
+        }
+
         const draggables = document.querySelectorAll('.draggable');
         const droppables = document.querySelectorAll('.droppable');
 
