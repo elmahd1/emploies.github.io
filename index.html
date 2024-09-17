@@ -26,18 +26,24 @@
             border: 1px solid #ddd;
             padding: 8px;
             text-align: center;
+            height: 60px;
         }
         th {
             background-color: #f2f2f2;
         }
-        button {
+        .droppable {
             width: 100%;
-            height: 40px;
-            border: none;
-            background-color: #f9f9f9;
-            cursor: pointer;
+            height: 100%;
         }
-        button:hover {
+        .draggable {
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            cursor: grab;
+        }
+        .draggable:hover {
             background-color: #ddd;
         }
         footer {
@@ -56,25 +62,14 @@
             margin: 0 10px;
         }
         .pocket-content {
-            display: none;
-            position: absolute;
-            bottom: 100%;
-            background-color: #f9f9f9;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 10px;
+        }
+        .subject {
             padding: 10px;
-            z-index: 1;
-        }
-        .pocket:hover .pocket-content {
-            display: block;
-        }
-        .pocket.red {
             background-color: #ffcccc;
-        }
-        .pocket.blue {
-            background-color: #cce5ff;
-        }
-        .pocket.green {
-            background-color: #d4edda;
+            border: 1px solid #ddd;
+            cursor: grab;
         }
     </style>
 </head>
@@ -82,73 +77,68 @@
     <div class="container">
         <table>
             <tr><th>Jour</th><th>8:30 - 9:30</th><th>9:30 - 10:30</th><th>10:45 - 11:45</th><th></th><th>14:30 - 15:30</th><th>15:30 - 16:30</th><th>16:45 - 17:45</th></tr>
-            <tr><td>lundi</td><td><button class="schedule-button" id="12"></button></td><td><button class="schedule-button" id="13"></button></td><td><button class="schedule-button" id="14"></button></td><td></td><td><button class="schedule-button" id="15"></button></td><td><button class="schedule-button" id="16"></button></td><td><button class="schedule-button" id="17"></button></td></tr>
-            <tr><td>mardi</td><td><button class="schedule-button" id="22"></button></td><td><button class="schedule-button" id="23"></button></td><td><button class="schedule-button" id="24"></button></td><td></td><td><button class="schedule-button" id="25"></button></td><td><button class="schedule-button" id="26"></button></td><td><button class="schedule-button" id="27"></button></td></tr>
-            <tr><td>mercredi</td><td><button class="schedule-button" id="32"></button></td><td><button class="schedule-button" id="33"></button></td><td><button class="schedule-button" id="34"></button></td><td></td><td><button class="schedule-button" id="35"></button></td><td><button class="schedule-button" id="36"></button></td><td><button class="schedule-button" id="37"></button></td></tr>
-            <tr><td>jeudi</td><td><button class="schedule-button" id="42"></button></td><td><button class="schedule-button" id="43"></button></td><td><button class="schedule-button" id="44"></button></td><td></td><td><button class="schedule-button" id="45"></button></td><td><button class="schedule-button" id="46"></button></td><td><button class="schedule-button" id="47"></button></td></tr>
-            <tr><td>vendredi</td><td><button class="schedule-button" id="52"></button></td><td><button class="schedule-button" id="53"></button></td><td><button class="schedule-button" id="54"></button></td><td></td><td><button class="schedule-button" id="55"></button></td><td><button class="schedule-button" id="56"></button></td><td><button class="schedule-button" id="57"></button></td></tr>
+            <tr><td>lundi</td><td class="droppable" id="12"></td><td class="droppable" id="13"></td><td class="droppable" id="14"></td><td></td><td class="droppable" id="15"></td><td class="droppable" id="16"></td><td class="droppable" id="17"></td></tr>
+            <tr><td>mardi</td><td class="droppable" id="22"></td><td class="droppable" id="23"></td><td class="droppable" id="24"></td><td></td><td class="droppable" id="25"></td><td class="droppable" id="26"></td><td class="droppable" id="27"></td></tr>
+            <tr><td>mercredi</td><td class="droppable" id="32"></td><td class="droppable" id="33"></td><td class="droppable" id="34"></td><td></td><td class="droppable" id="35"></td><td class="droppable" id="36"></td><td class="droppable" id="37"></td></tr>
+            <tr><td>jeudi</td><td class="droppable" id="42"></td><td class="droppable" id="43"></td><td class="droppable" id="44"></td><td></td><td class="droppable" id="45"></td><td class="droppable" id="46"></td><td class="droppable" id="47"></td></tr>
+            <tr><td>vendredi</td><td class="droppable" id="52"></td><td class="droppable" id="53"></td><td class="droppable" id="54"></td><td></td><td class="droppable" id="55"></td><td class="droppable" id="56"></td><td class="droppable" id="57"></td></tr>
         </table>
     </div>
    
     <footer>
-        <div class="pocket red">
-            <button id="math">Math</button>
-            <div class="pocket-content">
-                <button id="drag1">Matht</button>
-            </div>
-        </div>
-        <div class="pocket red">
-            <button id="arabe">Arabe</button>
-            <div class="pocket-content">
-                <button  id="drag2">Arabet</button>
-            </div>
-        </div>
-        <div class="pocket red">
-            <button id="svt">SVT</button>
-            <div class="pocket-content">
-                <button  id="drag3">SVTt</button>
-            </div>
-        </div>
-        <div class="pocket red">
-            <button id="anglais">Anglais</button>
-            <div class="pocket-content">
-                <button  id="drag4">Anglaist</button>
-            </div>
+        <div class="pocket-content">
+            <div class="subject draggable" id="math" draggable="true">Math</div>
+            <div class="subject draggable" id="arabe" draggable="true">Arabe</div>
+            <div class="subject draggable" id="svt" draggable="true">SVT</div>
+            <div class="subject draggable" id="anglais" draggable="true">Anglais</div>
         </div>
     </footer>
-    
-    <script>let selectedText = null;
 
-        document.querySelectorAll('.schedule-button').forEach(button => {
-            button.addEventListener('click', () => {
-                // Store the text of the clicked footer button
-                selectedText = button.innerText;
+    <script>
+        // Drag event handling for subjects
+        const subjects = document.querySelectorAll('.draggable');
+        let draggedItem = null;
+
+        subjects.forEach(subject => {
+            subject.addEventListener('dragstart', (event) => {
+                draggedItem = subject;
+                setTimeout(() => {
+                    subject.style.display = 'none';
+                }, 0);
             });
-        
-            button.addEventListener('mouseover', (event) => {
-                // Temporarily show the selected text when hovering over another schedule button
-                if (selectedText && event.target.innerText !== selectedText) {
-                    event.target.dataset.originalText = event.target.innerText; // Save the original text
-                    event.target.innerText = selectedText;
-                }
+
+            subject.addEventListener('dragend', () => {
+                setTimeout(() => {
+                    draggedItem.style.display = 'block';
+                    draggedItem = null;
+                }, 0);
             });
-        
-            button.addEventListener('mouseout', (event) => {
-                // Restore the original text when the mouse leaves the schedule button
-                if (event.target.dataset.originalText) {
-                    event.target.innerText = event.target.dataset.originalText;
-                }
+        });
+
+        // Allow dropping into table cells
+        const droppables = document.querySelectorAll('.droppable');
+
+        droppables.forEach(cell => {
+            cell.addEventListener('dragover', (event) => {
+                event.preventDefault();
             });
-        
-            button.addEventListener('click', (event) => {
-                // Permanently set the selected text when the schedule button is clicked
-                if (selectedText) {
-                    event.target.innerText = selectedText;
-                    selectedText = null; // Clear the selected text after use
+
+            cell.addEventListener('dragenter', () => {
+                cell.style.backgroundColor = '#f0f0f0';
+            });
+
+            cell.addEventListener('dragleave', () => {
+                cell.style.backgroundColor = '';
+            });
+
+            cell.addEventListener('drop', () => {
+                cell.style.backgroundColor = '';
+                if (draggedItem) {
+                    cell.innerHTML = ''; // Clear the cell before dropping
+                    cell.appendChild(draggedItem); // Move the dragged item into the cell
                 }
             });
         });
-        
     </script>
 </body>
 </html>
