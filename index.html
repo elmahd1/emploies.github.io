@@ -118,29 +118,44 @@
     </footer>
     
     <script>
-        let draggedButton = null;
+      document.querySelectorAll('button').forEach(button => {
+    button.draggable = true;
+    button.addEventListener('dragstart', dragStart);
+    button.addEventListener('dragover', dragOver);
+    button.addEventListener('drop', drop);
+});
 
-        document.querySelectorAll('button[draggable=true]').forEach(button => {
-            button.addEventListener('dragstart', (event) => {
-                draggedButton = event.target;  // Keep track of the dragged button
-            });
-        });
+function dragStart(event) {
+    // Set the button's ID so we can refer to it later
+    event.dataTransfer.setData('text/plain', event.target.id);
+    setTimeout(() => {
+        // Hide the button during drag to give a better visual cue
+        event.target.style.visibility = 'hidden';
+    }, 0);
+}
 
-        document.querySelectorAll('td button').forEach(cellButton => {
-            cellButton.addEventListener('dragover', (event) => {
-                event.preventDefault();
-            });
+function dragOver(event) {
+    event.preventDefault();
+}
 
-            cellButton.addEventListener('drop', (event) => {
-                event.preventDefault();
-                if (draggedButton) {
-                    // Move the dragged button to the new cell and clear the original cell
-                    event.target.innerText = draggedButton.innerText;
-                    draggedButton.parentElement.removeChild(draggedButton);  // Remove button from the original place
-                    draggedButton = null;
-                }
-            });
-        });
+function drop(event) {
+    event.preventDefault();
+    const buttonId = event.dataTransfer.getData('text/plain');
+    const draggedButton = document.getElementById(buttonId);
+    if (event.target.tagName === 'BUTTON') {
+        // If you drop onto another button, replace the buttons' positions
+        const targetButton = event.target;
+        const tempText = targetButton.innerText;
+        targetButton.innerText = draggedButton.innerText;
+        draggedButton.innerText = tempText;
+    } else if (event.target.tagName === 'TD') {
+        // If you drop on a table cell, move the button there
+        event.target.appendChild(draggedButton);
+    }
+    // Make the dragged button visible again
+    draggedButton.style.visibility = 'visible';
+}
+
     </script>
 </body>
 </html>
